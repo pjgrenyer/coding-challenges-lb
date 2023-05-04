@@ -18,9 +18,10 @@ app.get('/', async (req: Request, res: Response) => {
 });
 
 healthChecks();
-setInterval(async () => {
+const timer = setInterval(async () => {
     await healthChecks();
 }, 1000 * healthCheckInterval);
+timer.unref();
 
 app.listen(port, () => {
     // eslint-disable-next-line no-console
